@@ -2,7 +2,7 @@ Asstermo-D - Assistente de Termodinâmica variante "Document"
 (c) Bruno M. S. Santos 2011
 
 Esta é a pasta de desenvolvimento de software do Asstermo-D (Assistente de Termodinâmica variante "Document").
-O código aberto está abrangido pela licença GNU GPL v3, nomeadamente os ficheiros de texto de código, como também os códigos contidos nos ficheiros de extensão ".tns".
+O código aberto está abrangido pela licença GNU GPL v3, nomeadamente os ficheiros de texto de código, como também os códigos contidos nos ficheiros de extensão ".tns" (estes ficheiros estão num formato codificado que normalmente só se abrem com software da TI).
 No ficheiro LICENCA.TXT está a licença GNU GPL v3.
 
-Esta variante "D" ainda está em desenvolvimento, portanto a documentação ainda é escassa. Ou seja, referências a código/software utilizado no Asstermo-D será indicado aqui assim que for possível.
+Esta variante "Document" ainda está em desenvolvimento, portanto a documentação ainda é escassa. Ou seja, referências a código/software utilizado no Asstermo-D será indicado aqui assim que for possível.
