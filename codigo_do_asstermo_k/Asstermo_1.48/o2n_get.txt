@@ -3,77 +3,77 @@ Func
 
 Local  prop,i,a,b,lin1,col1,lin2,col2,inicio,fim,meio,val1,val2,val3,dj2,way
 
-0→a
-0→b
+0=:a
+0=:b
 
-i1→inicio
-i2→fim
-tabar[inicio,j1]→val1
-tabar[fim,j1]→val3
-1→way
+i1=:inicio
+i2=:fim
+tabar[inicio,j1]=:val1
+tabar[fim,j1]=:val3
+1=:way
 If  j1=6
-  ª1→way
+  ª1=:way
 
 Loop
 
-  ceiling((inicio+fim)/2)→meio
+  ceiling((inicio+fim)/2)=:meio
 
-  tabar[meio,j1]→val2
+  tabar[meio,j1]=:val2
 
   If way*baseprop<way*val1 or way*baseprop>way*val3 Then
     Exit
   ElseIf baseprop=val1 Then
-    inicio→a
+    inicio=:a
     Exit
   ElseIf baseprop=val2 Then
-    meio→a
+    meio=:a
     Exit
   ElseIf baseprop=val3 Then
-    fim→a
+    fim=:a
     Exit
   ElseIf fim-inicio=1 Then
-    inicio→a
+    inicio=:a
     Exit
   ElseIf way*val1<=way*baseprop and way*baseprop<=way*val2 Then
-    meio→fim
-    val2→val3
+    meio=:fim
+    val2=:val3
   ElseIf way*val2<=way*baseprop and way*baseprop<=way*val3 Then
-    meio→inicio
-    val2→val1
+    meio=:inicio
+    val2=:val1
   EndIf
 
 EndLoop
 
-If a!=0 Then
+If a/=0 Then
  For  i,a,i2
   If baseprop*way<=way*tabar[i,j1] Then
-    i→b
+    i=:b
     Exit
   EndIf
  EndFor
 EndIf
 
-dim(j2)→dj2
+dim(j2)=:dj2
 If a=0 or b=0 Then
-  undef+0*j2→prop
+  undef+0*j2=:prop
 ElseIf a=b Then
   For  i,1,dj2
-    If j2[i]!=0 Then
-      tabar[a,j2[i]]→prop[i]
+    If j2[i]/=0 Then
+      tabar[a,j2[i]]=:prop[i]
     Else
-      undef→prop[i]
+      undef=:prop[i]
     EndIf
   EndFor
 Else
-  tabar[a,j1]→lin1
-  tabar[b,j1]→lin2
+  tabar[a,j1]=:lin1
+  tabar[b,j1]=:lin2
   For  i,1,dj2
-    If j2[i]!=0 Then
-      tabar[a,j2[i]]→col1
-      tabar[b,j2[i]]→col2
-      interpol(lin1,col1,lin2,col2,baseprop)→prop[i]
+    If j2[i]/=0 Then
+      tabar[a,j2[i]]=:col1
+      tabar[b,j2[i]]=:col2
+      interpol(lin1,col1,lin2,col2,baseprop)=:prop[i]
     Else
-      undef→prop[i]
+      undef=:prop[i]
     EndIf
   EndFor
 EndIf

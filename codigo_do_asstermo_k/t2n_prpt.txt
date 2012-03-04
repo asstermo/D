@@ -6,20 +6,20 @@ Local  li1,li2,i,i1,i2,i3,taloc,tlista,tloc,txtlist,txttle,length,lpos,maxlist,t
 eliminar("resgener")
 o2n_xt(1)
 
-1→tloc
+1=:tloc
 
-8→maxlist
+8=:maxlist
 
-exact(tabar[1,2])→li1
-exact(tabar[1,4])→li2
+exact(tabar[1,2])=:li1
+exact(tabar[1,4])=:li2
 combof(3,li1,li2,3,{1},{0},{""},"tabar",7628,6,1)
-resgener→tlista
+resgener=:tlista
 
-1→prorvr
+1=:prorvr
 
 Lbl  start
 
-(tloc-1)/3+1→tloc
+(tloc-1)/3+1=:tloc
 
 Dialog
   Title  "Visualização da Tabela A-22 (Ar)"
@@ -32,30 +32,30 @@ Dialog
   DropDown  "Ver Pr ou Vr?",{"Pr","Vr"},prorvr
 EndDlog
 
-(tloc-1)*3+1→tloc
+(tloc-1)*3+1=:tloc
 
 If  ok=0
   Goto  fim
 
 If li2-tloc<maxlist Then
-  li2-tloc→i2
+  li2-tloc=:i2
 Else
-  maxlist→i2
+  maxlist=:i2
 EndIf
-i2-1→i2
+i2-1=:i2
 
-exact(tloc+1)→i1
+exact(tloc+1)=:i1
 
-exact(i1+i2)→i2
+exact(i1+i2)=:i2
 
 combof(3,i1,i2,1,{1,2,3,4,4+prorvr},{4,7,7,7,6},{"|","|","|","|"},"tabar",7628,6,1)
-dim(resgener)+1→lpos
-augment(resgener,seq("",i,lpos,8))→txtlist
+dim(resgener)+1=:lpos
+augment(resgener,seq("",i,lpos,8))=:txtlist
 
 If prorvr=1 Then
-  "pr"→seet
+  "pr"=:seet
 Else
-  "vr"→seet
+  "vr"=:seet
 EndIf
 
 Dialog

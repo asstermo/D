@@ -1,19 +1,19 @@
 (varlist)
 Prgm
-REM Variáveis locais estão pré-definidas. Os valores são atribuídos consoante a lista recebida
+© Variáveis locais estão pré-definidas. Os valores são atribuídos consoante a lista recebida
 Local contastr,contares,numvars,vartxt,j,t,p,u,h,s,h0f,v,hf,l10K,s0,K,pv,pvsat,w,hr,m,ma,mv,x,pr,vr,cp,cv
 
-""→contastr
-0→contares
-dim(varlist)→numvars
-""→vartxt
+""=:contastr
+0=:contares
+dim(varlist)=:numvars
+""=:vartxt
 
 If numvars>0 Then
   For j,1,numvars,2
-    varlist[j+1]→#(varlist[j])
-    vartxt&varlist[j]&","→vartxt
+    varlist[j+1]=:#(varlist[j])
+    vartxt&varlist[j]&","=:vartxt
   EndFor
-  mid(vartxt,1,dim(vartxt)-1)→vartxt
+  mid(vartxt,1,dim(vartxt)-1)=:vartxt
 EndIf
 
 Dialog
@@ -31,13 +31,13 @@ EndDlog
 
 If ok=1 Then
   Try
-    expr(contastr)→contares
+    expr(contastr)=:contares
   Else
-    "Expressão inválida!!!"→contares
+    "Expressão inválida!!!"=:contares
     ClrErr
   EndTry
   
-  string(contares)→contares
+  string(contares)=:contares
   
   Dialog
     Title "Resultado das suas contas"
@@ -54,7 +54,7 @@ If ok=1 Then
   EndDlog
   
   If ok=1
-    contares→contastr
+    contares=:contastr
 EndIf
 
 EndPrgm

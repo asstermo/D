@@ -1,7 +1,7 @@
 ()
 Prgm
-REM TERMO\ASSTERMO. Assistente de Termodinamica: Menu Principal. Precisa das seguintes matrizes: TabH2OA(2-5), TabAmo(13-15), TabR22A(7-9), Tab134(10-12), TabMMol, TabAr. Data: 08-09/2004. Autor: Bruno Santos, wyldckat@sapo.pt, asstermo.no.sapo.pt
-REM Versao descomprimida de nome TSSTermo
+© TERMO\ASSTERMO. Assistente de Termodinamica: Menu Principal. Precisa das seguintes matrizes: TabH2OA(2-5), TabAmo(13-15), TabR22A(7-9), Tab134(10-12), TabMMol, TabAr. Data: 08-09/2004. Autor: Bruno Santos, wyldckat@sapo.pt, asstermo.no.sapo.pt
+© Versao descomprimida de nome TSSTermo
 
 Local opcao,opcao1,opcao11,tabouval,oldfold,puop,pstr,p,t,tstr,v,u,h,s,punit,tunit,vunit,uunit,hunit,sunit,x,fgstr,fgfstr,fgval,xstr,fgop,cm,cm2,hpop,hpstr,spop,spstr,pf,hf,opcao2,opcao21,ttltxt,ttltxt2,tabnum,opcao7,arval,art,arh,aru,ars0,arpr,arvr,goon,contastr,contares,mmolop,mmunit,rmunit,mmolstr,doit,errtext,ClrGo,hstr,vstr,pfstr,GoGoGo,resulta,tmpstr,tmpstr2,tmpunit,aonoff
 
@@ -10,16 +10,16 @@ Local i,i2,t
 
 If OOKK=1 Then
 
-  false→GoGoGoR
+  false=:GoGoGoR
   Try
-    dim(valuelst)→i2
+    dim(valuelst)=:i2
     For i,1,i2
-      expr(valuelst[i])→t
-      If GetType(t)!="NUM"
+      expr(valuelst[i])=:t
+      If GetType(t)/="NUM"
         Exit
     EndFor
     If i=i2+1
-      true→GoGoGoR
+      true=:GoGoGoR
 
   Else
     ClrErr
@@ -27,78 +27,78 @@ If OOKK=1 Then
   If not GoGoGoR
     Text "Valores inválidos!!!"
 Else
-  true→GoGoGoR
+  true=:GoGoGoR
 EndIf
 
 EndPrgm
 
-""→contastr
-0→contares
-1→mmolop
-"kg/kmol"→mmunit
-"kJ/kg.K"→rmunit
-0→p
-0→pf
-0→t
-0→v
-0→u
-0→h
-0→s
-0→x
-0→arval
-0→art
-0→arh
-0→aru
-0→ars0
-0→arpr
-0→arvr
-0→opcao
-0→opcao1
-0→opcao11
-0→opcao2
-0→opcao21
-0→opcao7
-"Valores inválidos!!!"→errtext
-""→fgstr
+""=:contastr
+0=:contares
+1=:mmolop
+"kg/kmol"=:mmunit
+"kJ/kg.K"=:rmunit
+0=:p
+0=:pf
+0=:t
+0=:v
+0=:u
+0=:h
+0=:s
+0=:x
+0=:arval
+0=:art
+0=:arh
+0=:aru
+0=:ars0
+0=:arpr
+0=:arvr
+0=:opcao
+0=:opcao1
+0=:opcao11
+0=:opcao2
+0=:opcao21
+0=:opcao7
+"Valores inválidos!!!"=:errtext
+""=:fgstr
 
-setMode("Display Digits","Float 12")→cm
-setMode("Exponential Format","NORMAL")→cm2
-setFold(termo)→oldfold
-"Valores"→tabouval
-REM "Tabelas"→TabOuVal
-"bar"→punit
-"ºC"→tunit
-"m^3/kg"→vunit
-"kJ/kg"→uunit
-"kJ/kg"→hunit
-"kJ/(kg.K)"→sunit
-0→puop
+setMode("Display Digits","Float 12")=:cm
+setMode("Exponential Format","NORMAL")=:cm2
+setFold(termo)=:oldfold
+"Valores"=:tabouval
+© "Tabelas"=:TabOuVal
+"bar"=:punit
+"@dC"=:tunit
+"m^3/kg"=:vunit
+"kJ/kg"=:uunit
+"kJ/kg"=:hunit
+"kJ/(kg.K)"=:sunit
+0=:puop
 
 Lbl topo
-"Topo"→goon
+"Topo"=:goon
 
-PopUp {"Água","Amónia","Refrigerante 22","Refrigerante 134a","Massas Molares+R's","Ass. Psicrometria","Tabela do Ar","Assist. Combustao","ASSTermo: Sair","Sobre ASSTermo","Auto Alpha Off"},opcao
+PopUp {"Água","Amónia","Refrigerante 22","Refrigerante 134a","Massas Molares+R@ts","Ass. Psicrometria","Tabela do Ar","Assist. Combustao","ASSTermo: Sair","Sobre ASSTermo","Auto Alpha Off"},opcao
 
 If opcao=1 Then
 
 Lbl op1
-"Op1"→goon
+"Op1"=:goon
 
 PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L.Sat)","Proc. Por v e P","Proc. Por u e P","Água: Para Trás","ASSTermo: Sair","Fazer umas contas","Interpolações"},opcao1
 
   If opcao1=1 Then
 
     Lbl op11
-    "Op11"→goon
+    "Op11"=:goon
 
     PopUp {"Líquido Comprimido","Líquido/Vapor Sat","Vapor Sobreaquecid","Modo(T\V): "&tabouval,"Água: Para Trás","ASSTermo: Sair","Fazer umas contas","Interpolações"},opcao11
 
     If opcao11=1 Then
 
       If tabouval="Valores" Then
-        0→puop
-        string(p)→pstr
-        string(t)→tstr
+        0=:puop
+        string(p)=:pstr
+        string(t)=:tstr
 
         Loop
           Dialog
@@ -121,21 +121,21 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
         If ok=1 Then
 
-          expr(pstr)→p
-          expr(tstr)→t
-          pconv(p,puop)→p
+          expr(pstr)=:p
+          expr(tstr)=:t
+          pconv(p,puop)=:p
 
           ClrIO
           Disp "Iniciando cálculos"
           Disp "de v,u,h e s"
           h2o_xtc(5)
 
-          h2o_lc(p,t,{"v","u","h","s"})→v
+          h2o_lc(p,t,{"v","u","h","s"})=:v
           h2o_tdel(5)
-          v[2]→u
-          v[3]→h
-          v[4]→s
-          v[1]→v
+          v[2]=:u
+          v[3]=:h
+          v[4]=:s
+          v[1]=:v
           Disp "Calculado"
 
           Dialog
@@ -164,13 +164,13 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
       If tabouval="Valores" Then
 
-        string(x)→xstr
+        string(x)=:xstr
 
         Loop
           Dialog
             Title "Água Saturada"
             Text " Indique a pressão (em bar) ou a tem_"
-            Text "peratura (em ºC) e o título(de 0 a 1)."
+            Text "peratura (em @dC) e o título(de 0 a 1)."
             Text "Receberá as propriedades corresponden_"
             Text "tes! Ver no ""Modo(T\V): Tabelas"" para"
             Text "conhecer os limites."
@@ -189,36 +189,36 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
         If ok=1 Then
 
-          expr(xstr)→x
+          expr(xstr)=:x
 
           ClrIO
           Disp "Iniciando cálculos"
           Disp "de p\T,v,u,h e s"
 
           If fgop=1 Then
-            expr(fgstr)→p
-            "p"→fgfstr
-            p→fgval
+            expr(fgstr)=:p
+            "p"=:fgfstr
+            p=:fgval
             h2o_xtc(3)
           ElseIf fgop=2 Then
-            expr(fgstr)→t
-            "T"→fgfstr
-            t→fgval
+            expr(fgstr)=:t
+            "T"=:fgfstr
+            t=:fgval
             h2o_xtc(2)
           EndIf
 
-          h2o_fg(fgval,fgfstr,x,{"v","u","h","s",fgfstr})→v
-          v[2]→u
-          v[3]→h
-          v[4]→s
+          h2o_fg(fgval,fgfstr,x,{"v","u","h","s",fgfstr})=:v
+          v[2]=:u
+          v[3]=:h
+          v[4]=:s
           If fgop=1 Then
-            v[5]→t
+            v[5]=:t
             h2o_tdel(3)
           ElseIf fgop=2 Then
-            v[5]→p
+            v[5]=:p
             h2o_tdel(2)
           EndIf
-          v[1]→v
+          v[1]=:v
           Disp "(T\p,v,u,h,s) - Calculado"
 
           Dialog
@@ -247,9 +247,9 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
       If tabouval="Valores" Then
 
-        0→puop
-        string(p)→pstr
-        string(t)→tstr
+        0=:puop
+        string(p)=:pstr
+        string(t)=:tstr
 
         Loop
           Dialog
@@ -273,10 +273,10 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
         If ok=1 Then
 
-          expr(pstr)→p
-          expr(tstr)→t
+          expr(pstr)=:p
+          expr(tstr)=:t
 
-          pconv(p,puop)→p
+          pconv(p,puop)=:p
 
           ClrIO
           Disp "Iniciando cálculos"
@@ -284,14 +284,14 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
           h2o_xtc(4)
 
-          h2o_vs(p,t,{"v","u","h","s"})→v
+          h2o_vs(p,t,{"v","u","h","s"})=:v
 
           h2o_tdel(4)
 
-          v[2]→u
-          v[3]→h
-          v[4]→s
-          v[1]→v
+          v[2]=:u
+          v[3]=:h
+          v[4]=:s
+          v[1]=:v
           Disp "Calculado"
 
           Dialog
@@ -317,9 +317,9 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
     ElseIf opcao11=4 Then
       If tabouval="Valores" Then
-        "Tabelas"→tabouval
+        "Tabelas"=:tabouval
       ElseIf tabouval="Tabelas" Then
-        "Valores"→tabouval
+        "Valores"=:tabouval
       EndIf
     ElseIf opcao11=5 Then
       Goto op1
@@ -336,28 +336,28 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
   ElseIf opcao1=2 or opcao1=3 or opcao1=5 or opcao1=6 Then
 
     If opcao1=2 Then
-      "Água: Obter propriedades só com h e p"→ttltxt2
-      "entalpia"→tmpstr
-      string(h)→hstr
-      hunit→tmpunit
+      "Água: Obter propriedades só com h e p"=:ttltxt2
+      "entalpia"=:tmpstr
+      string(h)=:hstr
+      hunit=:tmpunit
     ElseIf opcao1=3 Then
-      "Água: Obter propriedades só com s e p"→ttltxt2
-      "entropia"→tmpstr
-      string(s)→hstr
-      sunit→tmpunit
+      "Água: Obter propriedades só com s e p"=:ttltxt2
+      "entropia"=:tmpstr
+      string(s)=:hstr
+      sunit=:tmpunit
     ElseIf opcao1=5 Then
-      "Água: Obter propriedades só com v e p"→ttltxt2
-      "vol.esp."→tmpstr
-      string(v)→hstr
-      vunit→tmpunit
+      "Água: Obter propriedades só com v e p"=:ttltxt2
+      "vol.esp."=:tmpstr
+      string(v)=:hstr
+      vunit=:tmpunit
     ElseIf opcao1=6 Then
-      "Água: Obter propriedades só com u e p"→ttltxt2
-      "e.interna"→tmpstr
-      string(u)→hstr
-      uunit→tmpunit
+      "Água: Obter propriedades só com u e p"=:ttltxt2
+      "e.interna"=:tmpstr
+      string(u)=:hstr
+      uunit=:tmpunit
     EndIf
 
-    string(p)→pstr
+    string(p)=:pstr
     Loop
       Dialog
         Title ttltxt2
@@ -380,66 +380,66 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
     If ok=1 Then
 
-      expr(pstr)→p
+      expr(pstr)=:p
 
       ClrIO
       Disp "Iniciando cálculos"
       Disp "Por Favor Aguarde..."
 
       If hpop=1 Then
-        "lc"→hpstr
+        "lc"=:hpstr
         h2o_xtc(5)
       ElseIf hpop=2 Then
-        "fg"→hpstr
+        "fg"=:hpstr
         h2o_xtc(3)
       ElseIf hpop=3 Then
-        "vs"→hpstr
+        "vs"=:hpstr
         h2o_xtc(4)
       EndIf
 
       If opcao1=2 Then
-        expr(hstr)→h
-        h2o_hsp(h,"h",p,hpstr,{"T","u","v","s"})→resulta
-        resulta[2]→u
-        resulta[3]→v
-        resulta[4]→s
+        expr(hstr)=:h
+        h2o_hsp(h,"h",p,hpstr,{"T","u","v","s"})=:resulta
+        resulta[2]=:u
+        resulta[3]=:v
+        resulta[4]=:s
       ElseIf opcao1=3 Then
-        expr(hstr)→s
-        h2o_hsp(s,"s",p,hpstr,{"T","u","v","h"})→resulta
-        resulta[2]→u
-        resulta[3]→v
-        resulta[4]→h
+        expr(hstr)=:s
+        h2o_hsp(s,"s",p,hpstr,{"T","u","v","h"})=:resulta
+        resulta[2]=:u
+        resulta[3]=:v
+        resulta[4]=:h
       ElseIf opcao1=5 Then
-        expr(hstr)→v
-        h2o_hsp(v,"v",p,hpstr,{"T","u","h","s"})→resulta
-        resulta[2]→u
-        resulta[3]→h
-        resulta[4]→s
+        expr(hstr)=:v
+        h2o_hsp(v,"v",p,hpstr,{"T","u","h","s"})=:resulta
+        resulta[2]=:u
+        resulta[3]=:h
+        resulta[4]=:s
       ElseIf opcao1=6 Then
-        expr(hstr)→u
-        h2o_hsp(u,"u",p,hpstr,{"T","h","v","s"})→resulta
-        resulta[2]→h
-        resulta[3]→v
-        resulta[4]→s
+        expr(hstr)=:u
+        h2o_hsp(u,"u",p,hpstr,{"T","h","v","s"})=:resulta
+        resulta[2]=:h
+        resulta[3]=:v
+        resulta[4]=:s
       EndIf
-      resulta[1]→t
+      resulta[1]=:t
 
       If hpop=2 Then
-        resulta[5]→x
+        resulta[5]=:x
         h2o_tdel(3)
       Else
-        "Não aplicável"→x
+        "Não aplicável"=:x
         h2o_tdel(4)
         h2o_tdel(5)
       EndIf
       Disp "Valores Calculados"
 
       If hpop=1 Then
-        "Resultados em Líquido Comprimido"→hpstr
+        "Resultados em Líquido Comprimido"=:hpstr
       ElseIf hpop=2 Then
-        "Resultados em Água Saturada"→hpstr
+        "Resultados em Água Saturada"=:hpstr
       ElseIf hpop=3 Then
-        "Resultados em Vapor SobreAquecido"→hpstr
+        "Resultados em Vapor SobreAquecido"=:hpstr
       EndIf
 
       Dialog
@@ -460,10 +460,10 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
   ElseIf opcao1=4 Then
 
-    string(h)→hstr
-    string(v)→vstr
-    string(p)→pstr
-    string(pf)→pfstr
+    string(h)=:hstr
+    string(v)=:vstr
+    string(p)=:pstr
+    string(pf)=:pfstr
     Loop
       Dialog
         Title "Obter h final com h inicial, v e p"
@@ -487,16 +487,16 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
     If ok=1 Then
 
-      expr(hstr)→h
-      expr(vstr)→v
-      expr(pstr)→p
-      expr(pfstr)→pf
+      expr(hstr)=:h
+      expr(vstr)=:v
+      expr(pstr)=:p
+      expr(pfstr)=:pf
 
-      h2o_hvp(h,v,p,pf)→hf
+      h2o_hvp(h,v,p,pf)=:hf
 
       Dialog
         Title "Resultado (líq. comp.) entropia cte."
-        Text "A conta executada: hi+v*(pf-pi)→hf"
+        Text "A conta executada: hi+v*(pf-pi)=:hf"
         Text "O resultado:"
         Text ""
         Text "hi= "&string(h)&" "&hunit
@@ -523,31 +523,31 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
 ElseIf opcao=2 or opcao=3 or opcao=4 Then
 
-opcao-1→tabnum
+opcao-1=:tabnum
 
 Lbl op2
-"Op2"→goon
+"Op2"=:goon
 
 If opcao=2 Then
-  "Amónia"→ttltxt
+  "Amónia"=:ttltxt
 ElseIf opcao=3 Then
-  "R22"→ttltxt
+  "R22"=:ttltxt
 ElseIf opcao=4 Then
-  "R134a"→ttltxt
+  "R134a"=:ttltxt
 EndIf
 PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L.Sat)","Proc. Por v e P","Proc. Por u e P",ttltxt&": Para Trás","ASSTermo: Sair","Fazer umas contas","Interpolações"},opcao2
 
   If opcao2=1 Then
 
     Lbl op21
-    "Op21"→goon
+    "Op21"=:goon
 
     If opcao=2 Then
-      "Amónia"→ttltxt
+      "Amónia"=:ttltxt
     ElseIf opcao=3 Then
-      "R22"→ttltxt
+      "R22"=:ttltxt
     ElseIf opcao=4 Then
-      "R134a"→ttltxt
+      "R134a"=:ttltxt
     EndIf
 
     PopUp {"Líquido/Vapor Sat","Vapor Sobreaquecid","Modo(T\V): "&tabouval,ttltxt&": Para Trás","ASSTermo: Sair","Fazer umas contas","Interpolações"},opcao21
@@ -556,21 +556,21 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
       If tabouval="Valores" Then
 
-        string(x)→xstr
+        string(x)=:xstr
 
         If opcao=2 Then
-          "Amónia Saturada"→ttltxt
+          "Amónia Saturada"=:ttltxt
         ElseIf opcao=3 Then
-          "Refrigerante 22 Saturado"→ttltxt
+          "Refrigerante 22 Saturado"=:ttltxt
         ElseIf opcao=4 Then
-          "Refrigerante 134a Saturado"→ttltxt
+          "Refrigerante 134a Saturado"=:ttltxt
         EndIf
 
         Loop
           Dialog
             Title ttltxt
             Text " Indique a pressão (em bar) ou a tem_"
-            Text "peratura (em ºC) e o título(de 0 a 1)."
+            Text "peratura (em @dC) e o título(de 0 a 1)."
             Text "Receberá as propriedades corresponden_"
             Text "tes! Ver no ""Modo(T\V): Tabelas"" para "
             Text "conhecer os limites."
@@ -589,44 +589,44 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
         If ok=1 Then
 
-          expr(xstr)→x
+          expr(xstr)=:x
 
           ClrIO
           Disp "Iniciando cálculos"
           Disp "de p\T,v,u,h e s"
 
           If fgop=1 Then
-            expr(fgstr)→p
-            "p"→fgfstr
-            p→fgval
+            expr(fgstr)=:p
+            "p"=:fgfstr
+            p=:fgval
             refs_xtc(tabnum,2)
           ElseIf fgop=2 Then
-            expr(fgstr)→t
-            "T"→fgfstr
-            t→fgval
+            expr(fgstr)=:t
+            "T"=:fgfstr
+            t=:fgval
             refs_xtc(tabnum,1)
           EndIf
 
-          refs_fg(fgval,fgfstr,x,{"v","u","h","s",fgfstr},tabnum)→v
-          v[2]→u
-          v[3]→h
-          v[4]→s
+          refs_fg(fgval,fgfstr,x,{"v","u","h","s",fgfstr},tabnum)=:v
+          v[2]=:u
+          v[3]=:h
+          v[4]=:s
           If fgop=1 Then
-            v[5]→t
+            v[5]=:t
             refs_tdl(tabnum,2)
           ElseIf fgop=2 Then
-            v[5]→p
+            v[5]=:p
             refs_tdl(tabnum,1)
           EndIf
-          v[1]→v
+          v[1]=:v
           Disp "(T\p,v,u,h,s) - Calculado"
 
           If opcao=2 Then
-            "Resultados: Amónia Saturada"→ttltxt
+            "Resultados: Amónia Saturada"=:ttltxt
           ElseIf opcao=3 Then
-            "Resultados: R22 Saturado"→ttltxt
+            "Resultados: R22 Saturado"=:ttltxt
           ElseIf opcao=4 Then
-            "Resultados: R134a Saturado"→ttltxt
+            "Resultados: R134a Saturado"=:ttltxt
           EndIf
 
           Dialog
@@ -656,16 +656,16 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
       If tabouval="Valores" Then
 
-        0→puop
-        string(p)→pstr
-        string(t)→tstr
+        0=:puop
+        string(p)=:pstr
+        string(t)=:tstr
 
         If opcao=2 Then
-          "Amónia"→ttltxt
+          "Amónia"=:ttltxt
         ElseIf opcao=3 Then
-          "R22"→ttltxt
+          "R22"=:ttltxt
         ElseIf opcao=4 Then
-          "R134a"→ttltxt
+          "R134a"=:ttltxt
         EndIf
 
         Loop
@@ -690,23 +690,23 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
         If ok=1 Then
 
-          expr(pstr)→p
-          expr(tstr)→t
+          expr(pstr)=:p
+          expr(tstr)=:t
 
-          pconv(p,puop)→p
+          pconv(p,puop)=:p
 
           ClrIO
           Disp "Iniciando cálculos"
           Disp "de v,u,h e s"
           refs_xtc(tabnum,3)
-          refs_vs(p,t,{"v","u","h","s"},tabnum)→v
+          refs_vs(p,t,{"v","u","h","s"},tabnum)=:v
 
           refs_tdl(tabnum,3)
 
-          v[2]→u
-          v[3]→h
-          v[4]→s
-          v[1]→v
+          v[2]=:u
+          v[3]=:h
+          v[4]=:s
+          v[1]=:v
           Disp "Calculado"
 
           Dialog
@@ -734,9 +734,9 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
     ElseIf opcao21=3 Then
       If tabouval="Valores" Then
-        "Tabelas"→tabouval
+        "Tabelas"=:tabouval
       ElseIf tabouval="Tabelas" Then
-        "Valores"→tabouval
+        "Valores"=:tabouval
       EndIf
     ElseIf opcao21=4 Then
       Goto op2
@@ -753,36 +753,36 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
   ElseIf opcao2=2 or opcao2=3 or opcao2=5 or opcao2=6 Then
 
     If opcao=2 Then
-      "Amónia"→ttltxt
+      "Amónia"=:ttltxt
     ElseIf opcao=3 Then
-      "Refrigerante 22"→ttltxt
+      "Refrigerante 22"=:ttltxt
     ElseIf opcao=4 Then
-      "Refrigerante 134a"→ttltxt
+      "Refrigerante 134a"=:ttltxt
     EndIf
 
     If opcao2=2 Then
-      "-- Obter propriedades só com h e p --"→ttltxt2
-      "entalpia"→tmpstr
-      string(h)→hstr
-      hunit→tmpunit
+      "-- Obter propriedades só com h e p --"=:ttltxt2
+      "entalpia"=:tmpstr
+      string(h)=:hstr
+      hunit=:tmpunit
     ElseIf opcao2=3 Then
-      "-- Obter propriedades só com s e p --"→ttltxt2
-      "entropia"→tmpstr
-      string(s)→hstr
-      sunit→tmpunit
+      "-- Obter propriedades só com s e p --"=:ttltxt2
+      "entropia"=:tmpstr
+      string(s)=:hstr
+      sunit=:tmpunit
     ElseIf opcao2=5 Then
-      "-- Obter propriedades só com v e p --"→ttltxt2
-      "vol.esp."→tmpstr
-      string(v)→hstr
-      vunit→tmpunit
+      "-- Obter propriedades só com v e p --"=:ttltxt2
+      "vol.esp."=:tmpstr
+      string(v)=:hstr
+      vunit=:tmpunit
     ElseIf opcao2=6 Then
-      "-- Obter propriedades só com u e p --"→ttltxt2
-      "e.interna"→tmpstr
-      string(u)→hstr
-      uunit→tmpunit
+      "-- Obter propriedades só com u e p --"=:ttltxt2
+      "e.interna"=:tmpstr
+      string(u)=:hstr
+      uunit=:tmpunit
     EndIf
 
-    string(p)→pstr
+    string(p)=:pstr
     Loop
       Dialog
         Title ttltxt
@@ -806,67 +806,67 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
     If ok=1 Then
 
-      expr(pstr)→p
+      expr(pstr)=:p
 
       ClrIO
       Disp "Iniciando cálculos"
       Disp "Por Favor Aguarde..."
 
       If hpop=1 Then
-        "fg"→hpstr
+        "fg"=:hpstr
         refs_xtc(tabnum,2)
       ElseIf hpop=2 Then
-        "vs"→hpstr
+        "vs"=:hpstr
         refs_xtc(tabnum,3)
       EndIf
 
       If opcao2=2 Then
-        expr(hstr)→h
-        refs_hsp(h,"h",p,hpstr,{"T","u","v","s"},tabnum)→resulta
-        resulta[2]→u
-        resulta[3]→v
-        resulta[4]→s
+        expr(hstr)=:h
+        refs_hsp(h,"h",p,hpstr,{"T","u","v","s"},tabnum)=:resulta
+        resulta[2]=:u
+        resulta[3]=:v
+        resulta[4]=:s
       ElseIf opcao2=3 Then
-        expr(hstr)→s
-        refs_hsp(s,"s",p,hpstr,{"T","u","v","h"},tabnum)→resulta
-        resulta[2]→u
-        resulta[3]→v
-        resulta[4]→h
+        expr(hstr)=:s
+        refs_hsp(s,"s",p,hpstr,{"T","u","v","h"},tabnum)=:resulta
+        resulta[2]=:u
+        resulta[3]=:v
+        resulta[4]=:h
       ElseIf opcao2=5 Then
-        expr(hstr)→v
-        refs_hsp(v,"v",p,hpstr,{"T","u","h","s"},tabnum)→resulta
-        resulta[2]→u
-        resulta[3]→h
-        resulta[4]→s
+        expr(hstr)=:v
+        refs_hsp(v,"v",p,hpstr,{"T","u","h","s"},tabnum)=:resulta
+        resulta[2]=:u
+        resulta[3]=:h
+        resulta[4]=:s
       ElseIf opcao2=6 Then
-        expr(hstr)→u
-        refs_hsp(u,"u",p,hpstr,{"T","h","v","s"},tabnum)→resulta
-        resulta[2]→h
-        resulta[3]→v
-        resulta[4]→s
+        expr(hstr)=:u
+        refs_hsp(u,"u",p,hpstr,{"T","h","v","s"},tabnum)=:resulta
+        resulta[2]=:h
+        resulta[3]=:v
+        resulta[4]=:s
       EndIf
-      resulta[1]→t
+      resulta[1]=:t
       If hpop=1 Then
         refs_tdl(tabnum,2)
-        resulta[5]→x
+        resulta[5]=:x
       Else
         refs_tdl(tabnum,3)
-        "Não aplicável"→x
+        "Não aplicável"=:x
       EndIf
       Disp "Valores Calculados"
 
       If hpop=1 Then
-        "Líq./Vap. Saturado"→hpstr
+        "Líq./Vap. Saturado"=:hpstr
       ElseIf hpop=2 Then
-        "Vapor SobreAquecido"→hpstr
+        "Vapor SobreAquecido"=:hpstr
       EndIf
 
       If opcao=2 Then
-        hpstr&" (Amónia)"→hpstr
+        hpstr&" (Amónia)"=:hpstr
       ElseIf opcao=3 Then
-        hpstr&" (R22)"→hpstr
+        hpstr&" (R22)"=:hpstr
       ElseIf opcao=4 Then
-        hpstr&" (R134a)"→hpstr
+        hpstr&" (R134a)"=:hpstr
       EndIf
 
       Dialog
@@ -889,17 +889,17 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
   ElseIf opcao2=4 Then
 
     If opcao=2 Then
-      "Amónia"→ttltxt
+      "Amónia"=:ttltxt
     ElseIf opcao=3 Then
-      "R22"→ttltxt
+      "R22"=:ttltxt
     ElseIf opcao=4 Then
-      "R134a"→ttltxt
+      "R134a"=:ttltxt
     EndIf
 
-    string(h)→hstr
-    string(v)→vstr
-    string(p)→pstr
-    string(pf)→pfstr
+    string(h)=:hstr
+    string(v)=:vstr
+    string(p)=:pstr
+    string(pf)=:pfstr
     Loop
       Dialog
         Title ttltxt&": obter hf com hi, v e p"
@@ -923,18 +923,18 @@ PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L
 
     If ok=1 Then
 
-      expr(hstr)→h
-      expr(vstr)→v
-      expr(pstr)→p
-      expr(pfstr)→pf
+      expr(hstr)=:h
+      expr(vstr)=:v
+      expr(pstr)=:p
+      expr(pfstr)=:pf
 
-      refs_hvp(h,v,p,pf)→hf
+      refs_hvp(h,v,p,pf)=:hf
 
       Dialog
         Title ttltxt
         Text "Resultado (liq. comp.) entropia cons_"
         Text "tante... A conta executada:"
-        Text "hi+v*(pf-pi)→hf. O resultado:"
+        Text "hi+v*(pf-pi)=:hf. O resultado:"
         Text ""
         Text "hi= "&string(h)&" "&hunit
         Text "v= "&string(v)&" "&vunit
@@ -962,7 +962,7 @@ ElseIf opcao=5 Then
 
 mol_xt(1)
 
-seq(mid(tabmmol[i,1],1,16),i,1,27)→mmolstr
+seq(mid(tabmmol[i,1],1,16),i,1,27)=:mmolstr
 
 Dialog
   Title "Listagem das massas molares e Rs"
@@ -979,7 +979,7 @@ Lbl mmolint
 
 Dialog
   Title "Informação da substância..."
-  Text "Para a substância '"&tabmmol[mmolop,1]&"':"
+  Text "Para a substância @t"&tabmmol[mmolop,1]&"@t:"
   Text ""
   Text "Fórmula química = "&tabmmol[mmolop,2]
   Text "Massa molar = "&string(tabmmol[mmolop,3])&" "&mmunit
@@ -994,7 +994,7 @@ If  ok=1
 
 Lbl mmolfim
 
-0→mmolstr
+0=:mmolstr
 mol_xt(0)
 
 ElseIf opcao=6 Then
@@ -1004,29 +1004,29 @@ ElseIf opcao=6 Then
 ElseIf opcao=7 Then
 
 Lbl op7
-"Op7"→goon
+"Op7"=:goon
 
 PopUp {"Procurar por T","Procurar por h","Procurar por u","Procurar por s0","Procurar por pr","Procurar por vr","Ver Tabela","Ar: Para Trás","ASSTermo: Sair","Fazer umas contas","Interpolações"},opcao7
   If opcao71 and opcao76 Then
 
     If opcao7=1 Then
-      "Temperatura (K)"→ttltxt
-      string(art)→arval
+      "Temperatura (K)"=:ttltxt
+      string(art)=:arval
     ElseIf opcao7=2 Then
-      "Entalpia (kJ/kg)"→ttltxt
-      string(arh)→arval
+      "Entalpia (kJ/kg)"=:ttltxt
+      string(arh)=:arval
     ElseIf opcao7=3 Then
-      "E. Interna (kJ/kg)"→ttltxt
-      string(aru)→arval
+      "E. Interna (kJ/kg)"=:ttltxt
+      string(aru)=:arval
     ElseIf opcao7=4 Then
-      "Entrop.0 (kJ/kg.K)"→ttltxt
-      string(ars0)→arval
+      "Entrop.0 (kJ/kg.K)"=:ttltxt
+      string(ars0)=:arval
     ElseIf opcao7=5 Then
-      "Razão de Pressão"→ttltxt
-      string(arpr)→arval
+      "Razão de Pressão"=:ttltxt
+      string(arpr)=:arval
     ElseIf opcao7=6 Then
-      "Razão de Volume"→ttltxt
-      string(arvr)→arval
+      "Razão de Volume"=:ttltxt
+      string(arvr)=:arval
     EndIf
 
     Loop
@@ -1055,53 +1055,53 @@ PopUp {"Procurar por T","Procurar por h","Procurar por u","Procurar por s0","Pro
       Disp "Por Favor Aguarde..."
 
       If opcao7=1 Then
-        expr(arval)→art
-        o2n_prop(art,"T",{"h","u","s0","pr","vr"})→arval
-        arval[1]→arh
-        arval[2]→aru
-        arval[3]→ars0
-        arval[4]→arpr
-        arval[5]→arvr
+        expr(arval)=:art
+        o2n_prop(art,"T",{"h","u","s0","pr","vr"})=:arval
+        arval[1]=:arh
+        arval[2]=:aru
+        arval[3]=:ars0
+        arval[4]=:arpr
+        arval[5]=:arvr
       ElseIf opcao7=2 Then
-        expr(arval)→arh
-        o2n_prop(arh,"h",{"T","u","s0","pr","vr"})→arval
-        arval[1]→art
-        arval[2]→aru
-        arval[3]→ars0
-        arval[4]→arpr
-        arval[5]→arvr
+        expr(arval)=:arh
+        o2n_prop(arh,"h",{"T","u","s0","pr","vr"})=:arval
+        arval[1]=:art
+        arval[2]=:aru
+        arval[3]=:ars0
+        arval[4]=:arpr
+        arval[5]=:arvr
       ElseIf opcao7=3 Then
-        expr(arval)→aru
-        o2n_prop(aru,"u",{"T","h","s0","pr","vr"})→arval
-        arval[1]→art
-        arval[2]→arh
-        arval[3]→ars0
-        arval[4]→arpr
-        arval[5]→arvr
+        expr(arval)=:aru
+        o2n_prop(aru,"u",{"T","h","s0","pr","vr"})=:arval
+        arval[1]=:art
+        arval[2]=:arh
+        arval[3]=:ars0
+        arval[4]=:arpr
+        arval[5]=:arvr
       ElseIf opcao7=4 Then
-        expr(arval)→ars0
-        o2n_prop(ars0,"s0",{"T","h","u","pr","vr"})→arval
-        arval[1]→art
-        arval[2]→arh
-        arval[3]→aru
-        arval[4]→arpr
-        arval[5]→arvr
+        expr(arval)=:ars0
+        o2n_prop(ars0,"s0",{"T","h","u","pr","vr"})=:arval
+        arval[1]=:art
+        arval[2]=:arh
+        arval[3]=:aru
+        arval[4]=:arpr
+        arval[5]=:arvr
       ElseIf opcao7=5 Then
-        expr(arval)→arpr
-        o2n_prop(arpr,"pr",{"T","h","u","s0","vr"})→arval
-        arval[1]→art
-        arval[2]→arh
-        arval[3]→aru
-        arval[4]→ars0
-        arval[5]→arvr
+        expr(arval)=:arpr
+        o2n_prop(arpr,"pr",{"T","h","u","s0","vr"})=:arval
+        arval[1]=:art
+        arval[2]=:arh
+        arval[3]=:aru
+        arval[4]=:ars0
+        arval[5]=:arvr
       ElseIf opcao7=6 Then
-        expr(arval)→arvr
-        o2n_prop(arvr,"vr",{"T","h","u","s0","pr"})→arval
-        arval[1]→art
-        arval[2]→arh
-        arval[3]→aru
-        arval[4]→ars0
-        arval[5]→arpr
+        expr(arval)=:arvr
+        o2n_prop(arvr,"vr",{"T","h","u","s0","pr"})=:arval
+        arval[1]=:art
+        arval[2]=:arh
+        arval[3]=:aru
+        arval[4]=:ars0
+        arval[5]=:arpr
       EndIf
 
       o2n_xt(0)
@@ -1168,7 +1168,7 @@ ElseIf opcao=11 Then
   Disp "do Auto Alpha Off e do"
   Disp "Event Hook Uninstaller."
 
-  2→aonoff
+  2=:aonoff
   Dialog
     Title "Tratar daquilo que chateia..."
     Text " Auto Alpha Off é um mini programa que"
@@ -1211,13 +1211,13 @@ EndDlog
 
 If ok=1 Then
 Try
-expr(contastr)→contares
+expr(contastr)=:contares
  Else
-"Expressão inválida!!!"→contares
+"Expressão inválida!!!"=:contares
 ClrErr
 EndTry
 
-string(contares)→contares
+string(contares)=:contares
 
 Dialog
   Title "Resultado das suas contas"
@@ -1233,15 +1233,15 @@ Dialog
   Text "são inicial, Esc p/ deixar a original."
 EndDlog
 If  ok=1
-  contares→contastr
+  contares=:contastr
 EndIf
 
 Goto #goon
 
 Lbl fim
 setFold(#oldfold)
-setMode("Display Digits",cm)→cm
-setMode("Exponential Format",cm2)→cm2
+setMode("Display Digits",cm)=:cm
+setMode("Exponential Format",cm2)=:cm2
 ClrIO
 DispHome
 

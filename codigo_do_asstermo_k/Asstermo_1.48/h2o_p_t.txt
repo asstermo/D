@@ -1,14 +1,14 @@
 (t)
 Func
-REM tabela A-2 (Temp->ºC), TabH2OA2
-REM modo de uso: H2O_p_T(T)
+© tabela A-2 (Temp->@dC), TabH2OA2
+© modo de uso: H2O_p_T(T)
 
 Local  p,lin1,lin2,prop
 
-tabh2oa2[2,1]→lin1
-tabh2oa2[4,1]→lin2
+tabh2oa2[2,1]=:lin1
+tabh2oa2[4,1]=:lin2
 
-h2o_get(lin1,lin2,1,{2},t,"TabH2OA2")→prop
+h2o_get(lin1,lin2,1,{2},t,"TabH2OA2")=:prop
 
 Return  prop
 EndFunc

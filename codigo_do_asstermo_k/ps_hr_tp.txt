@@ -1,5 +1,5 @@
 (T,pv)
 Prgm
 H2O_pT(T)
-pv/prop[1]→prop
+pv/prop[1]=:prop
 EndPrgm

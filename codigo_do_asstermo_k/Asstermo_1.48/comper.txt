@@ -1,6 +1,6 @@
 ()
 Prgm
-REM Comprime os ficheiros TSSTermo, TSSPsicr, tefs_vst, t2o_lct, t2o_vst, tefs_fgt, t2o_fgt, as tabelas Tab* e bué outros...
+© Comprime os ficheiros TSSTermo, TSSPsicr, tefs_vst, t2o_lct, t2o_vst, tefs_fgt, t2o_fgt, as tabelas Tab* e bué outros...
 
 Local  compbn,compbtn
 Define  compbn(tmp,paked)=Prgm

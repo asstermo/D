@@ -1,11 +1,11 @@
 ()
 Prgm
-REM ZxxZ - Programa de Instalação na calculadora de recepção.
+© ZxxZ - Programa de Instalação na calculadora de recepção.
 Local oldfold,gm,gmd,nomepast,copiado,i,totalf,recebido
 
-GetConfg()→gm
-dim(gm)→gmd
-{gm[gmd-4],gm[gmd]}→gm
+GetConfg()=:gm
+dim(gm)=:gmd
+{gm[gmd-4],gm[gmd]}=:gm
 
 Dialog
   Title "Primeiro de tudo..."
@@ -24,11 +24,11 @@ If (OK=0 or gm[1]<140000 or gm[2]<140000)
   STOP
 
 Try
-  getfold()→oldfold
+  getfold()=:oldfold
   NewFold(termo)
 Else
   ClrErr
-  ""→nomepast
+  ""=:nomepast
   Loop
     Dialog
       Title "A pasta já existe..."
@@ -41,14 +41,14 @@ Else
     EndDlog
     If OK=1 Then
       If dim(nomepast)>0 Then
-        true→copiado
+        true=:copiado
         Try
           Rename termo,#nomepast
           NewFold(termo)
         Else
           ClrErr
           Text "Nome já existente!"
-          false→copiado
+          false=:copiado
         EndTry
         If copiado
           Exit
@@ -80,13 +80,13 @@ If OK=1 Then
   ClrIO
   Disp "A iniciar transferência..."
 
-  true→copiado
+  true=:copiado
   Try
     GetCalc listafic
-    dim(listafic)→totalf
+    dim(listafic)=:totalf
   Else
     ClrErr
-    false→copiado
+    false=:copiado
   EndTry
 
   If copiado then
@@ -104,17 +104,17 @@ If OK=1 Then
     endfor
   endif
 
-  copiado→FichRece
-  true→recebido
+  copiado=:FichRece
+  true=:recebido
   Try
     SendCalc FichRece
   Else
     ClrErr
-    false→recebido
+    false=:recebido
   EndTry
 
   If (not recebido or not copiado)
-    0→totalf
+    0=:totalf
 
   If totalf>0 Then
     Disp "Total ficheiros: "&string(totalf)
@@ -125,12 +125,12 @@ If OK=1 Then
 
     Output 42,105,listafic[i]&"     "
 
-    true→copiado
+    true=:copiado
     Try
       GetCalc #(listafic[i])
     Else
       ClrErr
-      false→copiado
+      false=:copiado
     EndTry
 
     If (not copiado)
@@ -142,13 +142,13 @@ If OK=1 Then
       ClrErr
     EndTry
 
-    true→FichRece
-    true→recebido
+    true=:FichRece
+    true=:recebido
     Try
       SendCalc FichRece
     Else
       ClrErr
-      false→recebido
+      false=:recebido
     EndTry
 
     If not recebido
@@ -168,7 +168,7 @@ If OK=1 Then
       ClrErr
     Endtry
     Define ZCopiar()=Prgm
-    REM ZCopiar - Programa de Instalação desta calculadora para outra.
+    © ZCopiar - Programa de Instalação desta calculadora para outra.
     termo\xupak("termo\pzcopiar","termo\tzcopiar")
     termo\tzcopiar()
     delvar termo\tzcopiar

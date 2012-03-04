@@ -1,23 +1,23 @@
 (bERPtmp,bERPptmp,bVName,bVNameN,nNomeC,nNome)
 Prgm
-REM TERMO\MostraHs. Não vale a pena descrever este, visto que é um auxiliar de ASSComb.
+© TERMO\MostraHs. Não vale a pena descrever este, visto que é um auxiliar de ASSComb.
 
   local txtlist,i,j,j2,j3,j4,hunit
 
-  "kJ/kmol"→hunit
+  "kJ/kmol"=:hunit
 
   Disp "A preparar informação..."
-  floor(dim(bERPtmp[1])/38)→j2
+  floor(dim(bERPtmp[1])/38)=:j2
   if j2>4
-    4→j2
-  seq("",i,1,6)→txtlist
+    4=:j2
+  seq("",i,1,6)=:txtlist
   for i,1,j2
-    txtlist[i]&mid(bERPtmp[1],(i-1)*38 + 1,38)→txtlist[i]
+    txtlist[i]&mid(bERPtmp[1],(i-1)*38 + 1,38)=:txtlist[i]
   endFor
-  j2+1→j2
-  txtlist[j2]&mid(bERPtmp[1],(j2-1)*38 + 1,38)→txtlist[j2]
+  j2+1=:j2
+  txtlist[j2]&mid(bERPtmp[1],(j2-1)*38 + 1,38)=:txtlist[j2]
 
-  string(bERPtmp[3])→txtlist[6]
+  string(bERPtmp[3])=:txtlist[6]
   Dialog
     Title "Equação e Entalpia Total: "&nNome
     Text " Carregue em OK para seguir para as"
@@ -32,22 +32,22 @@ REM TERMO\MostraHs. Não vale a pena descrever este, visto que é um auxiliar de
     Text mid(txtlist[6],27,38)
   EndDlog
   If Ok=1 Then
-    0→j3
-    ceiling(#bVNameN/9)→j4
+    0=:j3
+    ceiling(#bVNameN/9)=:j4
     For i,1,j4
-      seq("",j,1,9)→txtlist
+      seq("",j,1,9)=:txtlist
 
-      9*(i-1)→j3
+      9*(i-1)=:j3
       If #bVNameN-j3>9 Then
-        9→j2
+        9=:j2
       Else
-        #bVNameN-j3→j2
+        #bVNameN-j3=:j2
       EndIf
 
       for j,1,j2
-        #bVName[j3+j,1]→txtlist[j]
-        txtlist[j]&";"&string(bERPptmp[j3+j,1])&"K;h= "→txtlist[j]
-        txtlist[j]&string(bERPptmp[j3+j,2])&" "&hunit→txtlist[j]
+        #bVName[j3+j,1]=:txtlist[j]
+        txtlist[j]&";"&string(bERPptmp[j3+j,1])&"K;h= "=:txtlist[j]
+        txtlist[j]&string(bERPptmp[j3+j,2])&" "&hunit=:txtlist[j]
       endfor
 
       Dialog

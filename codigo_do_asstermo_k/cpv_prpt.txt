@@ -1,30 +1,30 @@
 ()
 Prgm
-REM ASSTERMO\cpv_prpt - Calores específicos de gases comuns. Requer a matriz TabCGA20.
-REM ASSTERMO\pcpvprpt - versão comprimida
-REM Data:06/2009. Autor: Bruno Santos, wyldckat@gmail.com, asstermo.no.sapo.pt
+© ASSTERMO\cpv_prpt - Calores específicos de gases comuns. Requer a matriz TabCGA20.
+© ASSTERMO\pcpvprpt - versão comprimida
+© Data:06/2009. Autor: Bruno Santos, wyldckat@gmail.com, asstermo.no.sapo.pt
 
 Local opcao,gases,gasesop,valor,t,cp,cv,k,ttltxt,li1,li2,tlista,maxlist,tloc,i1,i2,lpos,txtlist,i
 
 eliminar("resgener")
 cgcpv_xt(1)
 
-{"Air","N2","O2","CO2","CO","H2"}→gases
-1→gasesop
-0→t
-0→cp
-0→cv
-0→k
-""→ttltxt
+{"Air","N2","O2","CO2","CO","H2"}=:gases
+1=:gasesop
+0=:t
+0=:cp
+0=:cv
+0=:k
+""=:ttltxt
 
-1→tloc
+1=:tloc
 
-8→maxlist
+8=:maxlist
 
-exact(tabcga20[1,2])→li1
-exact(tabcga20[3,2])→li2
+exact(tabcga20[1,2])=:li1
+exact(tabcga20[3,2])=:li2
 combof(3,li1,li2,3,{1},{0},{""},"tabcga20",3650,91,0)
-resgener→tlista
+resgener=:tlista
 
 Lbl op
 
@@ -32,17 +32,17 @@ PopUp {"Procurar por T","Procurar por cp","Procurar por cv","Procurar por cp/cv"
 If opcao>=1 and opcao<=4 Then
 
   If opcao=1 Then
-    "Temperatura (K)"→ttltxt
-    string(t)→valor
+    "Temperatura (K)"=:ttltxt
+    string(t)=:valor
   ElseIf opcao=2 Then
-    "Cp (kJ/(kg.K))"→ttltxt
-    string(cp)→valor
+    "Cp (kJ/(kg.K))"=:ttltxt
+    string(cp)=:valor
   ElseIf opcao=3 Then
-    "Cv (kJ/(kg.K))"→ttltxt
-    string(cv)→valor
+    "Cv (kJ/(kg.K))"=:ttltxt
+    string(cv)=:valor
   ElseIf opcao=4 Then
-    "Cp/Cv=k"→ttltxt
-    string(k)→valor
+    "Cp/Cv=k"=:ttltxt
+    string(k)=:valor
   EndIf
 
   Loop
@@ -66,29 +66,29 @@ If opcao>=1 and opcao<=4 Then
   If ok=1 Then
 
     If opcao=1 Then
-      expr(valor)→t
+      expr(valor)=:t
       cpv_prop(gasesop,t,"T",{"cp","cv","k"})
-      prop[1]→cp
-      prop[2]→cv
-      prop[3]→k
+      prop[1]=:cp
+      prop[2]=:cv
+      prop[3]=:k
     ElseIf opcao=2 Then
-      expr(valor)→cp
+      expr(valor)=:cp
       cpv_prop(gasesop,cp,"cp",{"T","cv","k"})
-      prop[1]→t
-      prop[2]→cv
-      prop[3]→k
+      prop[1]=:t
+      prop[2]=:cv
+      prop[3]=:k
     ElseIf opcao=3 Then
-      expr(valor)→cv
+      expr(valor)=:cv
       cpv_prop(gasesop,cv,"cv",{"T","cp","k"})
-      prop[1]→t
-      prop[2]→cp
-      prop[3]→k
+      prop[1]=:t
+      prop[2]=:cp
+      prop[3]=:k
     ElseIf opcao=4 Then
-      expr(valor)→k
+      expr(valor)=:k
       cpv_prop(gasesop,k,"k",{"T","cp","cv"})
-      prop[1]→t
-      prop[2]→cp
-      prop[3]→cv
+      prop[1]=:t
+      prop[2]=:cp
+      prop[3]=:cv
     EndIf
 
     Dialog
@@ -109,7 +109,7 @@ If opcao>=1 and opcao<=4 Then
 ElseIf opcao=5 Then
 
   Lbl op5
-  (tloc-1)/3+1→tloc
+  (tloc-1)/3+1=:tloc
   
   Dialog
     Title  "Visualização da Tabela A-20 (Cp/Cv)"
@@ -122,27 +122,27 @@ ElseIf opcao=5 Then
     DropDown  "Temperatura (K)?",tlista,tloc
   EndDlog
   
-  (tloc-1)*3+1→tloc
+  (tloc-1)*3+1=:tloc
   
   If  ok=0
     Goto op
   
-  exact(tabcga20[1,1+gasesop])→li1
-  exact(tabcga20[3,1+gasesop])→li2
+  exact(tabcga20[1,1+gasesop])=:li1
+  exact(tabcga20[3,1+gasesop])=:li2
 
   If (li2-li1+1)-tloc<maxlist Then
-    (li2-li1+1)-tloc→i2
+    (li2-li1+1)-tloc=:i2
   Else
-    maxlist→i2
+    maxlist=:i2
   EndIf
-  i2-1→i2
+  i2-1=:i2
   
-  exact(tloc-1+li1)→i1
+  exact(tloc-1+li1)=:i1
   
-  exact(i1+i2)→i2
+  exact(i1+i2)=:i2
   combof(3,i1,i2,1,{1,2,3,4},{4,7,7,7},{"|","|","|"},"tabcga20",3650,91,0)
-  dim(resgener)+1→lpos
-  augment(resgener,seq("",i,lpos,8))→txtlist
+  dim(resgener)+1=:lpos
+  augment(resgener,seq("",i,lpos,8))=:txtlist
   eliminar("resgener")
   
   Dialog
@@ -162,10 +162,10 @@ ElseIf opcao=5 Then
     Goto op5
 
 ElseIf opcao=6 Then
-  "topo"→retopt
+  "topo"=:retopt
   Goto fim1
 ElseIf opcao=7 Then
-  "fim"→retopt
+  "fim"=:retopt
   Goto fim1
 ElseIf opcao=8 Then
   contas({"t",t,"cp",cp,"cv",cv,"k",k})

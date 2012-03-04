@@ -1,46 +1,46 @@
 (tabnum)
 Prgm
-REM ASSTERMO\OBTRFRG - aqui está a parte de interacção do utilizador com as tabelas dos refrigerantes. Precisa das seguintes matrizes: TabAmo(13-15), TabR22A(7-9), Tab134(10-12), Tabpro(16-18)
-REM ASSTERMO\PBTRFRG - versão comprimida
-REM Data:06/2009. Autor: Bruno Santos, wyldckat@gmail.com, asstermo.no.sapo.pt
+© ASSTERMO\OBTRFRG - aqui está a parte de interacção do utilizador com as tabelas dos refrigerantes. Precisa das seguintes matrizes: TabAmo(13-15), TabR22A(7-9), Tab134(10-12), Tabpro(16-18)
+© ASSTERMO\PBTRFRG - versão comprimida
+© Data:06/2009. Autor: Bruno Santos, wyldckat@gmail.com, asstermo.no.sapo.pt
 
-REM variável "retopt" é a variável de retorno de label!
+© variável "retopt" é a variável de retorno de label!
 
 Local tabouval,puop,pstr,p,t,tstr,v,u,h,s,punit,tunit,vunit,uunit,hunit,sunit,x,fgstr,fgfstr,fgval,xstr,fgop,hpop,hpstr,pf,hf,opcao2,opcao21,ttltxt,ttltxt2,hstr,vstr,pfstr,tmpstr,tmpstr2,tmpunit
 
-0→p
-0→pf
-0→t
-0→v
-0→u
-0→h
-0→s
-0→x
-0→opcao2
-0→opcao21
-""→fgstr
+0=:p
+0=:pf
+0=:t
+0=:v
+0=:u
+0=:h
+0=:s
+0=:x
+0=:opcao2
+0=:opcao21
+""=:fgstr
 
-"Valores"→tabouval
-REM "Tabelas"→TabOuVal
-"bar"→punit
-"ºC"→tunit
-"m^3/kg"→vunit
-"kJ/kg"→uunit
-"kJ/kg"→hunit
-"kJ/(kg.K)"→sunit
-0→puop
+"Valores"=:tabouval
+© "Tabelas"=:TabOuVal
+"bar"=:punit
+"@dC"=:tunit
+"m^3/kg"=:vunit
+"kJ/kg"=:uunit
+"kJ/kg"=:hunit
+"kJ/(kg.K)"=:sunit
+0=:puop
 
 
 Lbl op2
 
 If tabnum=1 Then
-  "Amónia"→ttltxt
+  "Amónia"=:ttltxt
 ElseIf tabnum=2 Then
-  "R22"→ttltxt
+  "R22"=:ttltxt
 ElseIf tabnum=3 Then
-  "R134a"→ttltxt
+  "R134a"=:ttltxt
 ElseIf tabnum=4 Then
-  "Propano"→ttltxt
+  "Propano"=:ttltxt
 EndIf
 PopUp {"Proc. Por P e/ou T","Proc. Por h e P","Proc. s e P (Tab)","Proc. s e P(L.Sat)","Proc. Por v e P","Proc. Por u e P",ttltxt&": Para Trás","ASSTermo: Sair","Fazer umas contas","Interpolações"},opcao2
 
@@ -49,13 +49,13 @@ If opcao2=1 Then
   Lbl op21
 
   If tabnum=1 Then
-    "Amónia"→ttltxt
+    "Amónia"=:ttltxt
   ElseIf tabnum=2 Then
-    "R22"→ttltxt
+    "R22"=:ttltxt
   ElseIf tabnum=3 Then
-    "R134a"→ttltxt
+    "R134a"=:ttltxt
   ElseIf tabnum=4 Then
-    "Propano"→ttltxt
+    "Propano"=:ttltxt
   EndIf
 
   PopUp {"Líquido/Vapor Sat","Vapor Sobreaquecid","Modo(T\V): "&tabouval,ttltxt&": Para Trás","ASSTermo: Sair","Fazer umas contas","Interpolações"},opcao21
@@ -64,23 +64,23 @@ If opcao2=1 Then
 
     If tabouval="Valores" Then
 
-      string(x)→xstr
+      string(x)=:xstr
 
       If tabnum=1 Then
-        "Amónia Saturada"→ttltxt
+        "Amónia Saturada"=:ttltxt
       ElseIf tabnum=2 Then
-        "Refrigerante 22 Saturado"→ttltxt
+        "Refrigerante 22 Saturado"=:ttltxt
       ElseIf tabnum=3 Then
-        "Refrigerante 134a Saturado"→ttltxt
+        "Refrigerante 134a Saturado"=:ttltxt
       ElseIf tabnum=4 Then
-        "Propano Saturado"→ttltxt
+        "Propano Saturado"=:ttltxt
       EndIf
 
       Loop
         Dialog
           Title ttltxt
           Text " Indique a pressão (em bar) ou a tem_"
-          Text "peratura (em ºC) e o título(de 0 a 1)."
+          Text "peratura (em @dC) e o título(de 0 a 1)."
           Text "Receberá as propriedades corresponden_"
           Text "tes! Ver no ""Modo(T\V): Tabelas"" para "
           Text "conhecer os limites."
@@ -99,53 +99,53 @@ If opcao2=1 Then
 
       If ok=1 Then
 
-        expr(xstr)→x
+        expr(xstr)=:x
 
         ClrIO
         Disp "Iniciando cálculos"
         Disp "de p\T,v,u,h e s"
 
         If fgop=1 Then
-          expr(fgstr)→p
-          "p"→fgfstr
-          p→fgval
+          expr(fgstr)=:p
+          "p"=:fgfstr
+          p=:fgval
           refs_xtc(tabnum,2)
         ElseIf fgop=2 Then
-          expr(fgstr)→t
-          "T"→fgfstr
-          t→fgval
+          expr(fgstr)=:t
+          "T"=:fgfstr
+          t=:fgval
           refs_xtc(tabnum,1)
         EndIf
 
         refs_fg(fgval,fgfstr,x,{"v","u","h","s",fgfstr},tabnum)
-        prop[2]→u
-        prop[3]→h
-        prop[4]→s
+        prop[2]=:u
+        prop[3]=:h
+        prop[4]=:s
         If fgop=1 Then
-          prop[5]→t
+          prop[5]=:t
           refs_tdl(tabnum,2)
         ElseIf fgop=2 Then
-          prop[5]→p
+          prop[5]=:p
           refs_tdl(tabnum,1)
         EndIf
-        prop[1]→v
+        prop[1]=:v
         Disp "(T\p,v,u,h,s) - Calculado"
 
         If tabnum=1 Then
-          "Resultados: Amónia Saturada"→ttltxt
+          "Resultados: Amónia Saturada"=:ttltxt
         ElseIf tabnum=2 Then
-          "Resultados: R22 Saturado"→ttltxt
+          "Resultados: R22 Saturado"=:ttltxt
         ElseIf tabnum=3 Then
-          "Resultados: R134a Saturado"→ttltxt
+          "Resultados: R134a Saturado"=:ttltxt
         ElseIf tabnum=4 Then
-          "Resultados: Propano Saturado"→ttltxt
+          "Resultados: Propano Saturado"=:ttltxt
         EndIf
 
-        ""→tmpstr
+        ""=:tmpstr
         If x<0.0 Then
-          " <0"→tmpstr
+          " <0"=:tmpstr
         ElseIf x>1.0 Then
-          " >1"→tmpstr
+          " >1"=:tmpstr
         EndIf
 
         Dialog
@@ -175,18 +175,18 @@ If opcao2=1 Then
 
     If tabouval="Valores" Then
 
-      0→puop
-      string(p)→pstr
-      string(t)→tstr
+      0=:puop
+      string(p)=:pstr
+      string(t)=:tstr
 
       If tabnum=1 Then
-        "Amónia"→ttltxt
+        "Amónia"=:ttltxt
       ElseIf tabnum=2 Then
-        "R22"→ttltxt
+        "R22"=:ttltxt
       ElseIf tabnum=3 Then
-        "R134a"→ttltxt
+        "R134a"=:ttltxt
       ElseIf tabnum=4 Then
-        "Propano"→ttltxt
+        "Propano"=:ttltxt
       EndIf
 
       Loop
@@ -211,10 +211,10 @@ If opcao2=1 Then
 
       If ok=1 Then
 
-        expr(pstr)→p
-        expr(tstr)→t
+        expr(pstr)=:p
+        expr(tstr)=:t
 
-        pconv(p,puop)→p
+        pconv(p,puop)=:p
 
         ClrIO
         Disp "Iniciando cálculos"
@@ -224,10 +224,10 @@ If opcao2=1 Then
 
         refs_tdl(tabnum,3)
 
-        prop[2]→u
-        prop[3]→h
-        prop[4]→s
-        prop[1]→v
+        prop[2]=:u
+        prop[3]=:h
+        prop[4]=:s
+        prop[1]=:v
         Disp "Calculado"
 
         Dialog
@@ -255,14 +255,14 @@ If opcao2=1 Then
 
   ElseIf opcao21=3 Then
     If tabouval="Valores" Then
-      "Tabelas"→tabouval
+      "Tabelas"=:tabouval
     ElseIf tabouval="Tabelas" Then
-      "Valores"→tabouval
+      "Valores"=:tabouval
     EndIf
   ElseIf opcao21=4 Then
     Goto op2
   ElseIf opcao21=5 Then
-    "fim"→retopt
+    "fim"=:retopt
     Goto fim1
   ElseIf opcao21=6 Then
     contas({"p",p,"t",t,"v",v,"u",u,"h",h,"s",s,"x",x})
@@ -275,39 +275,39 @@ If opcao2=1 Then
 ElseIf opcao2=2 or opcao2=3 or opcao2=5 or opcao2=6 Then
 
   If tabnum=1 Then
-    "Amónia"→ttltxt
+    "Amónia"=:ttltxt
   ElseIf tabnum=2 Then
-    "Refrigerante 22"→ttltxt
+    "Refrigerante 22"=:ttltxt
   ElseIf tabnum=3 Then
-    "Refrigerante 134a"→ttltxt
+    "Refrigerante 134a"=:ttltxt
   ElseIf tabnum=4 Then
-    "Propano"→ttltxt
+    "Propano"=:ttltxt
   EndIf
 
-  "-- Obter propriedades só com "→ttltxt2
+  "-- Obter propriedades só com "=:ttltxt2
   If opcao2=2 Then
-    ttltxt2&"h e p --"→ttltxt2
-    "entalpia"→tmpstr
-    string(h)→hstr
-    hunit→tmpunit
+    ttltxt2&"h e p --"=:ttltxt2
+    "entalpia"=:tmpstr
+    string(h)=:hstr
+    hunit=:tmpunit
   ElseIf opcao2=3 Then
-    ttltxt2&"s e p --"→ttltxt2
-    "entropia"→tmpstr
-    string(s)→hstr
-    sunit→tmpunit
+    ttltxt2&"s e p --"=:ttltxt2
+    "entropia"=:tmpstr
+    string(s)=:hstr
+    sunit=:tmpunit
   ElseIf opcao2=5 Then
-    ttltxt2&"v e p --"→ttltxt2
-    "vol.esp."→tmpstr
-    string(v)→hstr
-    vunit→tmpunit
+    ttltxt2&"v e p --"=:ttltxt2
+    "vol.esp."=:tmpstr
+    string(v)=:hstr
+    vunit=:tmpunit
   ElseIf opcao2=6 Then
-    ttltxt2&"u e p --"→ttltxt2
-    "e.interna"→tmpstr
-    string(u)→hstr
-    uunit→tmpunit
+    ttltxt2&"u e p --"=:ttltxt2
+    "e.interna"=:tmpstr
+    string(u)=:hstr
+    uunit=:tmpunit
   EndIf
 
-  string(p)→pstr
+  string(p)=:pstr
   Loop
     Dialog
       Title ttltxt
@@ -331,78 +331,78 @@ ElseIf opcao2=2 or opcao2=3 or opcao2=5 or opcao2=6 Then
 
   If ok=1 Then
 
-    expr(pstr)→p
+    expr(pstr)=:p
 
     ClrIO
     Disp "Iniciando cálculos"
     Disp "Por Favor Aguarde..."
 
     If hpop=1 Then
-      "fg"→hpstr
+      "fg"=:hpstr
       refs_xtc(tabnum,2)
     ElseIf hpop=2 Then
-      "vs"→hpstr
+      "vs"=:hpstr
       refs_xtc(tabnum,3)
     EndIf
 
     If opcao2=2 Then
-      expr(hstr)→h
+      expr(hstr)=:h
       refs_hsp(h,"h",p,hpstr,{"T","u","v","s"},tabnum)
-      prop[2]→u
-      prop[3]→v
-      prop[4]→s
+      prop[2]=:u
+      prop[3]=:v
+      prop[4]=:s
     ElseIf opcao2=3 Then
-      expr(hstr)→s
+      expr(hstr)=:s
       refs_hsp(s,"s",p,hpstr,{"T","u","v","h"},tabnum)
-      prop[2]→u
-      prop[3]→v
-      prop[4]→h
+      prop[2]=:u
+      prop[3]=:v
+      prop[4]=:h
     ElseIf opcao2=5 Then
-      expr(hstr)→v
+      expr(hstr)=:v
       refs_hsp(v,"v",p,hpstr,{"T","u","h","s"},tabnum)
-      prop[2]→u
-      prop[3]→h
-      prop[4]→s
+      prop[2]=:u
+      prop[3]=:h
+      prop[4]=:s
     ElseIf opcao2=6 Then
-      expr(hstr)→u
+      expr(hstr)=:u
       refs_hsp(u,"u",p,hpstr,{"T","h","v","s"},tabnum)
-      prop[2]→h
-      prop[3]→v
-      prop[4]→s
+      prop[2]=:h
+      prop[3]=:v
+      prop[4]=:s
     EndIf
-    prop[1]→t
+    prop[1]=:t
 
-    ""→tmpstr
+    ""=:tmpstr
 
     If hpop=1 Then
       refs_tdl(tabnum,2)
-      prop[5]→x
+      prop[5]=:x
 
       If x<0.0 Then
-        " <0"→tmpstr
+        " <0"=:tmpstr
       ElseIf x>1.0 Then
-        " >1"→tmpstr
+        " >1"=:tmpstr
       EndIf
     Else
       refs_tdl(tabnum,3)
-      "Não aplicável"→x
+      "Não aplicável"=:x
     EndIf
     Disp "Valores Calculados"
 
     If hpop=1 Then
-      "Líq./Vap. Saturado"→hpstr
+      "Líq./Vap. Saturado"=:hpstr
     ElseIf hpop=2 Then
-      "Vapor SobreAquecido"→hpstr
+      "Vapor SobreAquecido"=:hpstr
     EndIf
 
     If tabnum=1 Then
-      hpstr&" (Amónia)"→hpstr
+      hpstr&" (Amónia)"=:hpstr
     ElseIf tabnum=2 Then
-      hpstr&" (R22)"→hpstr
+      hpstr&" (R22)"=:hpstr
     ElseIf tabnum=3 Then
-      hpstr&" (R134a)"→hpstr
+      hpstr&" (R134a)"=:hpstr
     ElseIf tabnum=4 Then
-      hpstr&" (Propano)"→hpstr
+      hpstr&" (Propano)"=:hpstr
     EndIf
 
     Dialog
@@ -425,19 +425,19 @@ ElseIf opcao2=2 or opcao2=3 or opcao2=5 or opcao2=6 Then
 ElseIf opcao2=4 Then
 
   If tabnum=1 Then
-    "Amónia"→ttltxt
+    "Amónia"=:ttltxt
   ElseIf tabnum=2 Then
-    "R22"→ttltxt
+    "R22"=:ttltxt
   ElseIf tabnum=3 Then
-    "R134a"→ttltxt
+    "R134a"=:ttltxt
   ElseIf tabnum=4 Then
-    "Propano"→ttltxt
+    "Propano"=:ttltxt
   EndIf
 
-  string(h)→hstr
-  string(v)→vstr
-  string(p)→pstr
-  string(pf)→pfstr
+  string(h)=:hstr
+  string(v)=:vstr
+  string(p)=:pstr
+  string(pf)=:pfstr
   Loop
     Dialog
       Title ttltxt&": obter hf com hi, v e ∆p"
@@ -461,18 +461,18 @@ ElseIf opcao2=4 Then
 
   If ok=1 Then
 
-    expr(hstr)→h
-    expr(vstr)→v
-    expr(pstr)→p
-    expr(pfstr)→pf
+    expr(hstr)=:h
+    expr(vstr)=:v
+    expr(pstr)=:p
+    expr(pfstr)=:pf
 
-    refs_hvp(h,v,p,pf)→hf
+    refs_hvp(h,v,p,pf)=:hf
 
     Dialog
       Title ttltxt
       Text "Resultado (liq. comp.) entropia cons_"
       Text "tante... A conta executada:"
-      Text "hi+v*(pf-pi)→hf. O resultado:"
+      Text "hi+v*(pf-pi)=:hf. O resultado:"
       Text ""
       Text "hi= "&string(h)&" "&hunit
       Text "v= "&string(v)&" "&vunit
@@ -485,10 +485,10 @@ ElseIf opcao2=4 Then
   EndIf
 
 ElseIf opcao2=7 Then
-  "topo"→retopt
+  "topo"=:retopt
   Goto fim1
 ElseIf opcao2=8 Then
-  "fim"→retopt
+  "fim"=:retopt
   Goto fim1
 ElseIf opcao2=9 Then
   contas({"p",p,"t",t,"v",v,"u",u,"h",h,"s",s,"x",x})

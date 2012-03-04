@@ -1,19 +1,19 @@
 ()
 Prgm
-REM ASSTERMO\ASSTERMO. Assistente de Termodinamica: Menu Principal. Precisa das seguintes matrizes: TabH2OA(2-5), TabAmo(13-15), TabR22A(7-9), Tab134(10-12), Tabpro(16-18), TabMMol, TabAr, TabCGA20. Data: 08-09/2004, 05-06/2009. Autor: Bruno Santos, wyldckat@gmail.com, asstermo.no.sapo.pt
-REM Versao descomprimida de nome TSSTermo
+© ASSTERMO\ASSTERMO. Assistente de Termodinamica: Menu Principal. Precisa das seguintes matrizes: TabH2OA(2-5), TabAmo(13-15), TabR22A(7-9), Tab134(10-12), Tabpro(16-18), TabMMol, TabAr, TabCGA20. Data: 08-09/2004, 05-06/2009. Autor: Bruno Santos, wyldckat@gmail.com, asstermo.no.sapo.pt
+© Versao descomprimida de nome TSSTermo
 
 Local opcao,oldfold,cm,cm2,cm3,cm4
 
-0→opcao
+0=:opcao
 
-setMode("Display Digits","Float 12")→cm
-setMode("Exponential Format","NORMAL")→cm2
-setMode("Exact/Approx","AUTO")→cm3
-setMode("Base","DEC")→cm4
-setFold(asstermo)→oldfold
+setMode("Display Digits","Float 12")=:cm
+setMode("Exponential Format","NORMAL")=:cm2
+setMode("Exact/Approx","AUTO")=:cm3
+setMode("Base","DEC")=:cm4
+setFold(asstermo)=:oldfold
 
-"topo"→retopt
+"topo"=:retopt
 
 Lbl topo
 
@@ -134,10 +134,10 @@ Lbl fim
 eliminar("resgener")
 eliminar("retopt")
 setFold(#oldfold)
-setMode("Display Digits",cm)→cm
-setMode("Exponential Format",cm2)→cm2
-setMode("Exact/Approx",cm3)→cm3
-setMode("Base",cm4)→cm4
+setMode("Display Digits",cm)=:cm
+setMode("Exponential Format",cm2)=:cm2
+setMode("Exact/Approx",cm3)=:cm3
+setMode("Base",cm4)=:cm4
 
 ClrIO
 DispHome

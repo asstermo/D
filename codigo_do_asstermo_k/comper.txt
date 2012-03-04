@@ -1,6 +1,6 @@
 ()
 Prgm
-REM Comprime os ficheiros TSSTermo, TSSPsicr, tefs_vst, t2o_lct, t2o_vst, tefs_fgt, t2o_fgt, as tabelas Tab* e bué outros...
+© Comprime os ficheiros TSSTermo, TSSPsicr, tefs_vst, t2o_lct, t2o_vst, tefs_fgt, t2o_fgt, as tabelas Tab* e bué outros...
 
 Local compbn,compbtn,oldfold
 
@@ -56,7 +56,7 @@ EndTry
 
 endprgm
 
-setFold(asstermo)→oldfold
+setFold(asstermo)=:oldfold
 
 Dialog
 Text "Comprimir Programas? Ok sim, Esc nao."

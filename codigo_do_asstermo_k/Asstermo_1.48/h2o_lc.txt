@@ -1,66 +1,66 @@
 (p,t,tipo)
 Func
-REM tabela A-5 (liquido comprimido), TabH2OA5: linhas(1,8)
-REM modo de uso: H2O_lc(bar,ºC,{"v","u","h","s"})
-REM exemplo: H2O_lc(0.5,32,{"u","h"})
+© tabela A-5 (liquido comprimido), TabH2OA5: linhas(1,8)
+© modo de uso: H2O_lc(bar,@dC,{"v","u","h","s"})
+© exemplo: H2O_lc(0.5,32,{"u","h"})
 
 Local  i,a,b,prop,relcol,col1,col2,propa,propb,lin1,lin2,dtipo
 
-dim(tipo)→dtipo
+dim(tipo)=:dtipo
 
 For  i,1,dtipo
   If tipo[i]="v" Then
-    2→relcol[i]
+    2=:relcol[i]
   ElseIf tipo[i]="u" Then
-    3→relcol[i]
+    3=:relcol[i]
   ElseIf tipo[i]="h" Then
-    4→relcol[i]
+    4=:relcol[i]
   ElseIf tipo[i]="s" Then
-    5→relcol[i]
+    5=:relcol[i]
   EndIf
 EndFor
 
-REM Procurar na gama de pressoes
-0→a
-0→b
+© Procurar na gama de pressoes
+0=:a
+0=:b
 For  i,8,1,ª1
   If ptabh2oa5[6,i] Then
-    i→a
+    i=:a
     Exit
   EndIf
 EndFor
 
-If a!=0 Then
+If a/=0 Then
  For  i,a,8
   If p<=tabh2oa5[6,i] Then
-    i→b
+    i=:b
     Exit
   EndIf
  EndFor
 EndIf
 
-REM Verificar validade dos resultados obtidos
+© Verificar validade dos resultados obtidos
 If a=0 or b=0 Then
-  undef+0*relcol→prop
+  undef+0*relcol=:prop
 Else
-  tabh2oa5[3,a]→col1
-  col1+relcol-1→col2
-  tabh2oa5[2,a]→lin1
-  tabh2oa5[4,a]→lin2
+  tabh2oa5[3,a]=:col1
+  col1+relcol-1=:col2
+  tabh2oa5[2,a]=:lin1
+  tabh2oa5[4,a]=:lin2
   If a=b Then
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")→prop
+    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")=:prop
   Else
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")→propa
+    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")=:propa
 
-    tabh2oa5[3,b]→col1
-    col1+relcol-1→col2
-    tabh2oa5[2,b]→lin1
-    tabh2oa5[4,b]→lin2
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")→propb
+    tabh2oa5[3,b]=:col1
+    col1+relcol-1=:col2
+    tabh2oa5[2,b]=:lin1
+    tabh2oa5[4,b]=:lin2
+    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")=:propb
 
-    tabh2oa5[6,a]→lin1
-    tabh2oa5[6,b]→lin2
-    interpol(lin1,propa,lin2,propb,p)→prop
+    tabh2oa5[6,a]=:lin1
+    tabh2oa5[6,b]=:lin2
+    interpol(lin1,propa,lin2,propb,p)=:prop
   EndIf
 EndIf
 

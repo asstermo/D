@@ -2,8 +2,8 @@
 komodo.assertMacroVersion(3);
 if (komodo.view) { komodo.view.setFocus(); }
 
-var beforeList=["REM ", "→", ">=", "<=", "|>", "º", "∆", "!=", "'"];
-var afterList=["¨",   "»", "ž",  "œ",  "Ð",  "¬", "„", "", ""];
+var beforeList=["REM ", "→",  "|>", "º",  "!=", "'"];
+var afterList= ["© ",   "=:", "@>", "@d", "/=", "@t"];
 
 for(var i=0; i<beforeList.length;i++) {
     Find_ReplaceAllInMacro(window, 0, beforeList[i], afterList[i], false, 0, 0, false, false);
