@@ -1,4 +1,4 @@
-(p,t,tipo)
+Define LibPub h2o_vs(p,t,tipo)=
 Func
 © tabela A-4 (vapor sobreaquecido), TabH2OA4: linhas(1,24)
 © modo de uso: H2O_vs(bar,@dC,{"v","u","h","s"})
@@ -24,7 +24,7 @@ EndFor
 0=:a
 0=:b
 For  i,24,1,-1
-  If p>=tabh2oa4[6,i] Then
+  If p>=asstermod.tabh2oa4[6,i] Then
     i=:a
     Exit
   EndIf
@@ -32,7 +32,7 @@ EndFor
 
 If a/=0 Then
  For  i,a,24
-  If p<=tabh2oa4[6,i] Then
+  If p<=asstermod.tabh2oa4[6,i] Then
     i=:b
     Exit
   EndIf
@@ -43,24 +43,24 @@ EndIf
 If a=0 or b=0 Then
   undef+0*relcol=:prop
 Else
-  tabh2oa4[3,a]=:col1
+  asstermod.tabh2oa4[3,a]=:col1
   col1+relcol-1=:col2
-  tabh2oa4[2,a]=:lin1
-  tabh2oa4[4,a]=:lin2
+  asstermod.tabh2oa4[2,a]=:lin1
+  asstermod.tabh2oa4[4,a]=:lin2
   If a=b Then
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA4")=:prop
+    asstermod.h2o_get(lin1,lin2,col1,col2,t,"asstermod.TabH2OA4")=:prop
   Else
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA4")=:propa
+    asstermod.h2o_get(lin1,lin2,col1,col2,t,"asstermod.TabH2OA4")=:propa
 
-    tabh2oa4[3,b]=:col1
+    asstermod.tabh2oa4[3,b]=:col1
     col1+relcol-1=:col2
-    tabh2oa4[2,b]=:lin1
-    tabh2oa4[4,b]=:lin2
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA4")=:propb
+    asstermod.tabh2oa4[2,b]=:lin1
+    asstermod.tabh2oa4[4,b]=:lin2
+    asstermod.h2o_get(lin1,lin2,col1,col2,t,"asstermod.TabH2OA4")=:propb
 
-    tabh2oa4[6,a]=:lin1
-    tabh2oa4[6,b]=:lin2
-    interpol(lin1,propa,lin2,propb,p)=:prop
+    asstermod.tabh2oa4[6,a]=:lin1
+    asstermod.tabh2oa4[6,b]=:lin2
+    asstermod.interpol(lin1,propa,lin2,propb,p)=:prop
   EndIf
 EndIf
 
