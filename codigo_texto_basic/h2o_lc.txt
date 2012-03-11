@@ -1,8 +1,8 @@
-(p,t,tipo)
+Define LibPub h2o_lc(p,t,tipo)=
 Func
 © tabela A-5 (liquido comprimido), TabH2OA5: linhas(1,8)
 © modo de uso: H2O_lc(bar,@dC,{"v","u","h","s"})
-© exemplo: H2O_lc(0.5,32,{"u","h"})
+© exemplo: H2O_lc(25,32,{"u","h"})
 
 Local  i,a,b,prop,relcol,col1,col2,propa,propb,lin1,lin2,dtipo
 
@@ -23,8 +23,8 @@ EndFor
 © Procurar na gama de pressoes
 0=:a
 0=:b
-For  i,8,1,-1
-  If p>=tabh2oa5[6,i] Then
+For  i,8,1,−1
+  If p>=asstermod.tabh2oa5[6,i] Then
     i=:a
     Exit
   EndIf
@@ -32,7 +32,7 @@ EndFor
 
 If a/=0 Then
  For  i,a,8
-  If p<=tabh2oa5[6,i] Then
+  If p<=asstermod.tabh2oa5[6,i] Then
     i=:b
     Exit
   EndIf
@@ -43,24 +43,24 @@ EndIf
 If a=0 or b=0 Then
   undef+0*relcol=:prop
 Else
-  tabh2oa5[3,a]=:col1
+  asstermod.tabh2oa5[3,a]=:col1
   col1+relcol-1=:col2
-  tabh2oa5[2,a]=:lin1
-  tabh2oa5[4,a]=:lin2
+  asstermod.tabh2oa5[2,a]=:lin1
+  asstermod.tabh2oa5[4,a]=:lin2
   If a=b Then
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")=:prop
+    asstermod.h2o_get(lin1,lin2,col1,col2,t,"asstermod.TabH2OA5")=:prop
   Else
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")=:propa
+    asstermod.h2o_get(lin1,lin2,col1,col2,t,"asstermod.TabH2OA5")=:propa
 
-    tabh2oa5[3,b]=:col1
+    asstermod.tabh2oa5[3,b]=:col1
     col1+relcol-1=:col2
-    tabh2oa5[2,b]=:lin1
-    tabh2oa5[4,b]=:lin2
-    h2o_get(lin1,lin2,col1,col2,t,"TabH2OA5")=:propb
+    asstermod.tabh2oa5[2,b]=:lin1
+    asstermod.tabh2oa5[4,b]=:lin2
+    asstermod.h2o_get(lin1,lin2,col1,col2,t,"asstermod.TabH2OA5")=:propb
 
-    tabh2oa5[6,a]=:lin1
-    tabh2oa5[6,b]=:lin2
-    interpol(lin1,propa,lin2,propb,p)=:prop
+    asstermod.tabh2oa5[6,a]=:lin1
+    asstermod.tabh2oa5[6,b]=:lin2
+    asstermod.interpol(lin1,propa,lin2,propb,p)=:prop
   EndIf
 EndIf
 

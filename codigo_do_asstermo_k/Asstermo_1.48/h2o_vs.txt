@@ -23,7 +23,7 @@ EndFor
 © Procurar na gama de pressoes
 0=:a
 0=:b
-For  i,24,1,ª1
+For  i,24,1,-1
   If ptabh2oa4[6,i] Then
     i=:a
     Exit

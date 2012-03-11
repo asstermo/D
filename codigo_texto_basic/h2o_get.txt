@@ -1,0 +1,72 @@
+Define LibPub h2o_get(i1,i2,j1,j2,baseprop,tabela)=
+Func
+
+Local  prop,i,a,b,lin1,col1,lin2,col2,inicio,fim,meio,val1,val2,val3,dj2
+
+0=:a
+0=:b
+
+i1=:inicio
+i2=:fim
+#tabela[j1,inicio]=:val1
+#tabela[j1,fim]=:val3
+Loop
+
+  ceiling((inicio+fim)/2)=:meio
+
+  #tabela[j1,meio]=:val2
+
+  If baseprop<val1 or baseprop>val3 Then
+    Exit
+  ElseIf baseprop=val1 Then
+    inicio=:a
+    Exit
+  ElseIf baseprop=val2 Then
+    meio=:a
+    Exit
+  ElseIf baseprop=val3 Then
+    fim=:a
+    Exit
+  ElseIf fim-inicio=1 Then
+    inicio=:a
+    Exit
+  ElseIf val1<=baseprop and baseprop<=val2 Then
+    meio=:fim
+    val2=:val3
+  ElseIf val2<=baseprop and baseprop<=val3 Then
+    meio=:inicio
+    val2=:val1
+  EndIf
+
+EndLoop
+
+If a/=0 Then
+ For  i,a,i2
+  If baseprop<=#tabela[j1,i] Then
+    i=:b
+    Exit
+  EndIf
+ EndFor
+EndIf
+
+dim(j2)=:dj2
+If a=0 or b=0 Then
+  undef+0*j2=:prop
+ElseIf a=b Then
+  For  i,1,dj2
+    #tabela[j2[i],a]=:prop[i]
+  EndFor
+Else
+  #tabela[j1,a]=:lin1
+  #tabela[j1,b]=:lin2
+  newList(dj2)=:col1
+  col1=:col2
+  For  i,1,dj2
+    #tabela[j2[i],a]=:col1[i]
+    #tabela[j2[i],b]=:col2[i]
+  EndFor
+  interpol(lin1,col1,lin2,col2,baseprop)=:prop
+EndIf
+
+Return  prop
+EndFunc

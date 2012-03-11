@@ -87,7 +87,7 @@ ElseIf parte="vs" Then
  24=:lin3
 EndIf
 
-For i,lin3,1,ª1
+For i,lin3,1,-1
   If p#tabela[6,i] Then
     i=:a
     exit

@@ -34,7 +34,7 @@ ElseIf tabnum=3 Then
   18=:limtab
 EndIf
 
-For  i,limtab,1,ª1
+For  i,limtab,1,-1
   If p#tabela[6,i] Then
     i=:a
     Exit

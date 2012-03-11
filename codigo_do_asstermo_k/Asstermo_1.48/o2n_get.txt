@@ -12,7 +12,7 @@ tabar[inicio,j1]=:val1
 tabar[fim,j1]=:val3
 1=:way
 If  j1=6
-  ª1=:way
+  -1=:way
 
 Loop
 
