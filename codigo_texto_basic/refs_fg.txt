@@ -1,0 +1,67 @@
+Define LibPub refs_fg(baseprop,tibsprop,x,tipo,tabnum)
+Func
+© tabela A-7/10/13/16 (Temp->@dC), TabR22A7/13410/Amo13/Pro16
+© tabela A-8/11/14/17 (pressao->bar), TabR22A8/13411/Amo14/Pro17
+© exemplos: Refs_fg(32,"T",0,{"h","u"},1), resultado na variável prop.
+© Refs_fg(2,"p",0.4,{"s"},1)
+© Refs_fg(valor,"p"\"T",x,{"v","u","h","s","T"\"p"},1/2/3/4), 1/2/3/4=Amonia/R22/R134a/Propano
+
+Local  prop,col,lin1,lin2,propf,propg,tabela,dtipo,i
+
+dim(tipo)=:dtipo
+
+newList(2*dtipo)=:col
+For  i,1,dtipo
+  If tipo[i]="v" Then
+    3=:col[i]
+    4=:col[i+dtipo]
+  ElseIf tipo[i]="u" Then
+    5=:col[i]
+    6=:col[i+dtipo]
+  ElseIf tipo[i]="h" Then
+    7=:col[i]
+    9=:col[i+dtipo]
+  ElseIf tipo[i]="s" Then
+    10=:col[i]
+    11=:col[i+dtipo]
+  ElseIf tipo[i]="T" or tipo[i]="p" Then
+    2=:col[i]
+    2=:col[i+dtipo]
+  EndIf
+EndFor
+
+If tibsprop="T" Then
+
+  If tabnum=1 Then
+    "asstermod.TabAmo13"=:tabela
+  ElseIf tabnum=2 Then
+    "asstermod.TabR22A7"=:tabela
+  ElseIf tabnum=3 Then
+    "asstermod.Tab13410"=:tabela
+  ElseIf tabnum=4 Then
+    "asstermod.Tabpro16"=:tabela
+  EndIf
+ElseIf tibsprop="p" Then
+  If tabnum=1 Then
+    "asstermod.TabAmo14"=:tabela
+  ElseIf tabnum=2 Then
+    "asstermod.TabR22A8"=:tabela
+  ElseIf tabnum=3 Then
+    "asstermod.Tab13411"=:tabela
+  ElseIf tabnum=4 Then
+    "asstermod.Tabpro17"=:tabela
+  EndIf
+EndIf
+
+#tabela[2,1]=:lin1
+#tabela[4,1]=:lin2
+
+asstermod.refs_get(lin1,lin2,1,col,baseprop,tabela)=:prop
+subMat(list@>mat(prop))=:prop
+mat@>list(subMat(prop,1,1,1,dtipo))=:propf
+mat@>list(subMat(prop,1,1+dtipo,1,2*dtipo))=:propg
+0=:prop
+x*(propg-propf)+propf=:prop
+
+Return  prop
+EndFunc
