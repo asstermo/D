@@ -107,7 +107,7 @@ If parte="vs" Then
   EndIf
 
   For i,lin3,1,-1
-    If p>=#tabela[6,i] Then
+    If p>=#tabela[6,i] Then
       i=:a
       exit
     EndIf
@@ -115,7 +115,7 @@ If parte="vs" Then
   
   If a/=0 Then
    For i,a,lin3
-    If p<=#tabela[6,i] Then
+    If p<=#tabela[6,i] Then
       i=:b
       exit
     EndIf

@@ -1,0 +1,82 @@
+Define LibPub o2n_get(i1,i2,j1,j2,baseprop)
+Func
+
+Local  prop,i,a,b,lin1,col1,lin2,col2,inicio,fim,meio,val1,val2,val3,dj2,way
+
+0=:a
+0=:b
+
+i1=:inicio
+i2=:fim
+asstermod.tabar[inicio,j1]=:val1
+asstermod.tabar[fim,j1]=:val3
+1=:way
+If  j1=6
+  -1=:way
+
+Loop
+
+  ceiling((inicio+fim)/2)=:meio
+
+  tabar[meio,j1]=:val2
+
+  If way*baseprop<way*val1 or way*baseprop>way*val3 Then
+    Exit
+  ElseIf baseprop=val1 Then
+    inicio=:a
+    Exit
+  ElseIf baseprop=val2 Then
+    meio=:a
+    Exit
+  ElseIf baseprop=val3 Then
+    fim=:a
+    Exit
+  ElseIf fim-inicio=1 Then
+    inicio=:a
+    Exit
+  ElseIf way*val1<=way*baseprop and way*baseprop<=way*val2 Then
+    meio=:fim
+    val2=:val3
+  ElseIf way*val2<=way*baseprop and way*baseprop<=way*val3 Then
+    meio=:inicio
+    val2=:val1
+  EndIf
+
+EndLoop
+
+If a/=0 Then
+ For  i,a,i2
+  If baseprop*way<=way*tabar[i,j1] Then
+    i=:b
+    Exit
+  EndIf
+ EndFor
+EndIf
+
+dim(j2)=:dj2
+If a=0 or b=0 Then
+  undef+0*j2=:prop
+ElseIf a=b Then
+  For  i,1,dj2
+    If j2[i]/=0 Then
+      asstermod.tabar[a,j2[i]]=:prop[i]
+    Else
+      undef=:prop[i]
+    EndIf
+  EndFor
+Else
+  asstermod.tabar[a,j1]=:lin1
+  asstermod.tabar[b,j1]=:lin2
+  For  i,1,dj2
+    If j2[i]/=0 Then
+      asstermod.tabar[a,j2[i]]=:col1
+      asstermod.tabar[b,j2[i]]=:col2
+      asstermod.interpol(lin1,col1,lin2,col2,baseprop)=:prop[i]
+    Else
+      undef=:prop[i]
+    EndIf
+  EndFor
+EndIf
+
+Return  prop
+EndFunc
